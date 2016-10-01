@@ -1,0 +1,14 @@
+%nav.navbar.navbar-light.bg-faded
+  .navbar-header
+    =link_to t(:home_page),root_path,class: 'navbar-brand'
+  %ul.nav.nav-inline.pull-xs-right
+    %li.nav.item.dropdown#flags
+      =link_to '#',class: 'nav-link dropdown-toggle', 'data-toggle'=>'dropdown' do
+        = image_tag("#{extract_locale_key}.png")
+        = t("countries.#{extract_locale_key}")
+        %span.caret
+      .dropdown-menu
+        - I18n.available_locales.each do |locale_key|
+          =link_to url_for_locale(locale_key),{id: "link_to_#{locale_key}",class: 'dropdown-item'} do
+            = image_tag("#{locale_key}.png")
+            = t("countries.#{locale_key}")
