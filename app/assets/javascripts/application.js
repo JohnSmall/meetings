@@ -10,11 +10,9 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-<% unless options[:skip_javascript] -%>
-//= require <%= options[:javascript] %>
-//= require <%= options[:javascript] %>_ujs
-<% if gemfile_entries.any? { |m| m.name == "turbolinks" } -%>
+//= require jquery
+//= require tether
+//= require bootstrap-sprockets
+//= require jquery_ujs
 //= require turbolinks
-<% end -%>
-<% end -%>
 //= require_tree .

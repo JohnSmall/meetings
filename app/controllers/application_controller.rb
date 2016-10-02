@@ -5,12 +5,12 @@ class ApplicationController < ActionController::Base
 
   protected
   def set_locale
-      I18n.locale = extract_locale_from_tld || I18n.default_locale
+      I18n.locale = extract_locale_key
   end
 
-  def extract_locale_from_tld
+  def extract_locale_key
       parsed_locale = request.host.split('.').first
-      I18n.available_locales.map(&:to_s).include?(parsed_locale) ? parsed_locale : nil
+      I18n.available_locales.map(&:to_s).include?(parsed_locale) ? parsed_locale : I18n.default_locale
   end
 
   protect_from_forgery with: :exception

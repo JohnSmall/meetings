@@ -1,4 +1,8 @@
 source 'https://rubygems.org'
+#https://github.com/twbs/bootstrap-rubygem
+source 'https://rails-assets.org' do
+    gem 'rails-assets-tether', '>= 1.1.0'
+end
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
