@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161002141430) do
+ActiveRecord::Schema.define(version: 20161002183132) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,17 @@ ActiveRecord::Schema.define(version: 20161002141430) do
     t.string   "type"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+  end
+
+  create_table "influence_office_people", force: :cascade do |t|
+    t.integer  "means_of_influence_id"
+    t.integer  "office_id"
+    t.integer  "person_id"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.index ["means_of_influence_id"], name: "index_influence_office_people_on_means_of_influence_id", using: :btree
+    t.index ["office_id"], name: "index_influence_office_people_on_office_id", using: :btree
+    t.index ["person_id"], name: "index_influence_office_people_on_person_id", using: :btree
   end
 
   create_table "means_of_influences", force: :cascade do |t|
@@ -36,4 +47,5 @@ ActiveRecord::Schema.define(version: 20161002141430) do
     t.datetime "updated_at",          null: false
   end
 
+  add_foreign_key "influence_office_people", "means_of_influences"
 end
