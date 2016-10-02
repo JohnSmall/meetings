@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161002101731) do
+ActiveRecord::Schema.define(version: 20161002141430) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,19 @@ ActiveRecord::Schema.define(version: 20161002101731) do
     t.string   "type"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+  end
+
+  create_table "means_of_influences", force: :cascade do |t|
+    t.string   "type"
+    t.integer  "day"
+    t.integer  "month"
+    t.integer  "year"
+    t.string   "purpose"
+    t.string   "type_of_hospitality"
+    t.string   "gift"
+    t.integer  "value"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
   end
 
 end
