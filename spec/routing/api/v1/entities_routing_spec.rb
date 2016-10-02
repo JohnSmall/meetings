@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Api::V1::EntityResourcesController, type: :routing do
+RSpec.describe EntitiesController, type: :routing do
   describe "routing" do
 
     it "routes to #index" do
