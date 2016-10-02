@@ -1,0 +1,2 @@
+class GovernmentOffice < Entity
+end

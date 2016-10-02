@@ -25,9 +25,9 @@ RSpec.configure do |config|
 #  config.include Devise::TestHelpers, :type => :controller
 #  config.include Devise::TestHelpers, :type => :view
   #see spec/support/controller_macros.rb
-  config.extend ControllerMacros, :type => :controller
-  config.include ValidUserRequestHelper, :type => :request
-  config.include ViewMacros, :type => :view
+  #config.extend ControllerMacros, :type => :controller
+  #config.include ValidUserRequestHelper, :type => :request
+  #config.include ViewMacros, :type => :view
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false

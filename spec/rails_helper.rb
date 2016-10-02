@@ -53,7 +53,7 @@ RSpec.configure do |config|
   # The different available types are documented in the features, such as in
   # https://relishapp.com/rspec/rspec-rails/docs
   config.infer_spec_type_from_file_location!
-  ActiveRecord::Base.observers.disable :all # <-- Turn 'em all off!
+ # ActiveRecord::Base.observers.disable :all # <-- Turn 'em all off!
   config.mock_with :rspec do |mocks|
     # This option should be set when all dependencies are being loaded
     # before a spec run, as is the case in a typical spec helper. It will

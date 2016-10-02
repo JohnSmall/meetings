@@ -1,0 +1,2 @@
+class Organisation < Entity
+end
