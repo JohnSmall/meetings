@@ -4,8 +4,7 @@ RSpec.describe "entities/edit", type: :view do
   before(:each) do
     @entity = assign(:entity, Entity.create!(
       :name => "MyString",
-      :wikipedia_entry => "MyString",
-      :type => ""
+      :wikipedia_entry => "MyString"
     ))
   end
 
@@ -18,7 +17,6 @@ RSpec.describe "entities/edit", type: :view do
 
       assert_select "input#entity_wikipedia_entry[name=?]", "entity[wikipedia_entry]"
 
-      assert_select "input#entity_type[name=?]", "entity[type]"
     end
   end
 end

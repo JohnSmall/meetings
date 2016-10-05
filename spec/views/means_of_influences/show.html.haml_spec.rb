@@ -3,7 +3,6 @@ require 'rails_helper'
 RSpec.describe "means_of_influences/show", type: :view do
   before(:each) do
     @means_of_influence = assign(:means_of_influence, MeansOfInfluence.create!(
-      :type => "Type",
       :day => 2,
       :month => 3,
       :year => 4,
@@ -16,7 +15,6 @@ RSpec.describe "means_of_influences/show", type: :view do
 
   it "renders attributes in <p>" do
     render
-    expect(rendered).to match(/Type/)
     expect(rendered).to match(/2/)
     expect(rendered).to match(/3/)
     expect(rendered).to match(/4/)

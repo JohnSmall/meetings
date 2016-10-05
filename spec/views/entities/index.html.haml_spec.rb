@@ -5,13 +5,11 @@ RSpec.describe "entities/index", type: :view do
     assign(:entities, [
       Entity.create!(
         :name => "Name",
-        :wikipedia_entry => "Wikipedia Entry",
-        :type => "Type"
+        :wikipedia_entry => "Wikipedia Entry"
       ),
       Entity.create!(
         :name => "Name",
-        :wikipedia_entry => "Wikipedia Entry",
-        :type => "Type"
+        :wikipedia_entry => "Wikipedia Entry"
       )
     ])
   end
@@ -20,6 +18,5 @@ RSpec.describe "entities/index", type: :view do
     render
     assert_select "tr>td", :text => "Name".to_s, :count => 2
     assert_select "tr>td", :text => "Wikipedia Entry".to_s, :count => 2
-    assert_select "tr>td", :text => "Type".to_s, :count => 2
   end
 end

@@ -4,8 +4,7 @@ RSpec.describe "entities/show", type: :view do
   before(:each) do
     @entity = assign(:entity, Entity.create!(
       :name => "Name",
-      :wikipedia_entry => "Wikipedia Entry",
-      :type => "Type"
+      :wikipedia_entry => "Wikipedia Entry"
     ))
   end
 

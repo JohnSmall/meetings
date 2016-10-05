@@ -3,7 +3,6 @@ require 'rails_helper'
 RSpec.describe "means_of_influences/edit", type: :view do
   before(:each) do
     @means_of_influence = assign(:means_of_influence, MeansOfInfluence.create!(
-      :type => "",
       :day => 1,
       :month => 1,
       :year => 1,
@@ -18,8 +17,6 @@ RSpec.describe "means_of_influences/edit", type: :view do
     render
 
     assert_select "form[action=?][method=?]", means_of_influence_path(@means_of_influence), "post" do
-
-      assert_select "input#means_of_influence_type[name=?]", "means_of_influence[type]"
 
       assert_select "input#means_of_influence_day[name=?]", "means_of_influence[day]"
 

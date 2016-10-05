@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161002183132) do
+ActiveRecord::Schema.define(version: 20161004124950) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20161002183132) do
     t.integer  "person_id"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
+    t.string   "type"
     t.index ["means_of_influence_id"], name: "index_influence_office_people_on_means_of_influence_id", using: :btree
     t.index ["office_id"], name: "index_influence_office_people_on_office_id", using: :btree
     t.index ["person_id"], name: "index_influence_office_people_on_person_id", using: :btree
