@@ -9,9 +9,9 @@ require 'rails_helper'
     it{ should validate_presence_of(:month)}
     it{ should have_many(:influence_government_office_people)}
     it{ should have_many(:influence_organisation_people)}
-    it{ should have_many(:organisations).through(:influence_organisation_people).class_name('Organisation')}
+    it{ should have_many(:organisations).through(:influence_organisation_people)}
     it{ should have_many(:government_people).through(:influence_government_office_people).class_name('Person')}
-    it{ should have_many(:government_offices).through(:influence_government_office_people).class_name('GovernmentOffice')}
+    it{ should have_many(:government_offices).through(:influence_government_office_people)}
     it{ should have_many(:organisation_people).through(:influence_organisation_people).class_name('Person')}
   end
 

@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :influence_office_person do
-    association :means_of_influence, factory: :meeting 
+    meeting
     factory :influence_government_office_person,class: InfluenceGovernmentOfficePerson do
       government_office
       association :government_person, factory: :person

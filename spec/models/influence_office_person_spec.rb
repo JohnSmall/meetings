@@ -8,20 +8,20 @@ RSpec.describe InfluenceOfficePerson, type: :model do
     end
   end
   it { should have_db_column(:means_of_influence_id).of_type(:integer)}
+  it { should validate_presence_of(:means_of_influence_id)}
   it { should have_db_column(:type).of_type(:string)}
-  it { should belong_to(:means_of_influence)}
-  it { should belong_to(:meeting).class_name('MeansOfInfluence')}
-  it { should belong_to(:hospitality).class_name('MeansOfInfluence')}
-  it { should belong_to(:gift).class_name('MeansOfInfluence')}
-  it { should belong_to(:travel).class_name('MeansOfInfluence')}
+  it { should belong_to(:meeting).with_foreign_key(:means_of_influence_id)}
+  it { should belong_to(:hospitality).with_foreign_key(:means_of_influence_id)}
+  it { should belong_to(:gift).with_foreign_key(:means_of_influence_id)}
+  it { should belong_to(:travel).with_foreign_key(:means_of_influence_id)}
 end
 
 RSpec.describe InfluenceGovernmentOfficePerson,type: :model do
-  it { should belong_to(:government_person).class_name('Entity')}
-  it { should belong_to(:government_office).class_name('Entity')}
+  it { should belong_to(:government_person).class_name('Person').with_foreign_key('person_id')}
+  it { should belong_to(:government_office).with_foreign_key('office_id')}
 end
 
 RSpec.describe InfluenceOrganisationPerson,type: :model do
-  it { should belong_to(:organisation).class_name('Entity')}
-  it { should belong_to(:organisation_person).class_name('Entity')}
+  it { should belong_to(:organisation).with_foreign_key('office_id')}
+  it { should belong_to(:organisation_person).class_name('Person').with_foreign_key('person_id')}
 end
