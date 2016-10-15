@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   resources :means_of_influences
   resources :entities
   Entity.types.each do |pi_type|
@@ -6,6 +7,7 @@ Rails.application.routes.draw do
     namespace :api do
       namespace :v1 do
         jsonapi_resources (pi_type.underscore.downcase.pluralize.to_sym)
+        resources :apidocs, only:[:index]
       end
     end
   end
