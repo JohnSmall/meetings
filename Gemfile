@@ -72,6 +72,7 @@ group :development, :test do
   gem 'cucumber-rails', require: false
   gem 'awesome_print'
   gem 'webmock'
+  gem 'capistrano-git-submodule-strategy', '~> 0.1', :github => 'ekho/capistrano-git-submodule-strategy'
 end
 
 group :test do

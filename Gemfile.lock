@@ -10,6 +10,13 @@ GIT
       request_store (~> 1.0)
 
 GIT
+  remote: git://github.com/ekho/capistrano-git-submodule-strategy.git
+  revision: fa678a8160c82f2ea3625c3479c7f99ddfff03b0
+  specs:
+    capistrano-git-submodule-strategy (0.1.22)
+      capistrano (~> 3.1)
+
+GIT
   remote: git@github.com:JohnSmall/globalize.git
   revision: 7d507472e4076c720d798736137eb28d169eb1a1
   specs:
@@ -401,6 +408,7 @@ DEPENDENCIES
   byebug
   capistrano (~> 3.6)
   capistrano-bundler (~> 1.1.2)
+  capistrano-git-submodule-strategy (~> 0.1)!
   capistrano-passenger
   capistrano-rails (~> 1.1)
   capybara
