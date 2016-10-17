@@ -23,7 +23,7 @@ class Api::V1::ApidocsController < ApplicationController
         key :url, 'http://jsonapi.org/'
       end
     end
-    key :host,'http://staging.meetings.vidhya.tv'
+    key :host,'localhost:3000'
     key :basePath, '/api/v1'
     key :consumes, ['application/vnd.api+json']
     key :produces, ['application/vnd.api+json']
@@ -39,5 +39,8 @@ class Api::V1::ApidocsController < ApplicationController
 
   def index
     render json: Swagger::Blocks.build_root_json(SWAGGERED_CLASSES)
+  end
+
+  def show
   end
 end

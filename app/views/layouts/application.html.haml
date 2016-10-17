@@ -23,7 +23,7 @@
           - if alert
             %div{class: 'alert alert-danger', role: 'alert'}
               %p.alert= alert
-    %main
+    %main.container
       -if content_for?(:content)
         = yield :content
       -else  

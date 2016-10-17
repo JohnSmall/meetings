@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       namespace :v1 do
         jsonapi_resources (pi_type.underscore.downcase.pluralize.to_sym)
         resources :apidocs, only:[:index]
+        resources :docs, only:[:index]
       end
     end
   end
@@ -19,7 +20,7 @@ Rails.application.routes.draw do
       end
     end
   end
-
+  get '/swagger-docs' => redirect('/swagger/dist/index.html?url=/api/v1/apidocs')
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'main#index'
 end
