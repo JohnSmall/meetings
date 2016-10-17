@@ -22,7 +22,16 @@
           =link_to 'React Redux','https://github.com/dixieio/redux-json-api'
           For Python see 
           =link_to 'JSON-API implementations','http://jsonapi.org/implementations/'
-          There seem to be plenty of Python server side libraries for JSON-API but no client side libraries. So unfortunately it'll have to be hand coded.
+          There seem to be plenty of Python server side libraries for JSON-API but no client side libraries. |
+          So unfortunately if you're using Python, the client requests will have to be hand coded.
+        %h3 Postman
+        %p 
+          To view and play around with the API use the Postman Chrome plugin or standalone application. |
+          You'll have to set the 'Content-Type=application/vnd.api+json'. The React Redux library for JSON-API comes with its own data viewer
+        %h3 Documentation Structure
+        %p
+          I've added a lot of stuff about the underlying data structure before getting to the actual calls made to the API because it's useful to
+          be able to understand how the different object relate to each other. The procedures to add objects via the API is down at the end
     %section.row
       .col-md-10.center-block
         %h2 The data model
@@ -56,13 +65,13 @@
               updated_at timestamp without time zone NOT NULL
             );
 
-            
+
         %h5 The means_of_influence table.
         %p A strange name I know. It's a name that encompasses all the means of influence;- meetings, hospitality, gifts and travel
         %pre
           :preserve
             CREATE TABLE means_of_influences (
-                id integer NOT NULL,
+              id integer NOT NULL,
                 type character varying,
                 day integer,
                 month integer,
@@ -82,7 +91,7 @@
         %pre
           :preserve
             CREATE TABLE influence_office_people (
-                id integer NOT NULL,
+              id integer NOT NULL,
                 means_of_influence_id integer,
                 office_id integer,
                 person_id integer,
@@ -113,8 +122,8 @@
       %p
         This code is saying that a Person is a subclass of Entity, and a person can have many influence_office_people (the intermediate table) |
         and they can have many meetings, hospitalities, gifts and travels through the intermediate table. |
-        It doesn't say wether the person is a government official or an person from an organisation because the same person can be a government official and at a later time |
-        a representative of an organisation. Wether they're a government official or a person representing an organisation is defined by their role in the meeting/hospitality/etc |
+        It doesn't say whether the person is a government official or an person from an organisation because the same person can be a government official and at a later time |
+        a representative of an organisation. Whether they're a government official or a person representing an organisation is defined by their role in the meeting/hospitality/etc |
         That comes in the intermediate table
       %pre
         :preserve
@@ -169,12 +178,12 @@
           class Meeting < MeansOfInfluence
             validates :purpose,presence:true
           end
-       %p
-         This shows the superclass MeansOfInfluence, it defines the relationships at the superclass level, and then at the subclass level, Meeting defines just one |
-         additional behaviour, it validates the presence of 'purpose' because each meeting must have a purpose. |
-       %p later on I'll be adding the documentation for all the other classes, but now let's move on to see how you use the JSON-API to add data about a meeting
+      %p
+        This shows the superclass MeansOfInfluence, it defines the relationships at the superclass level, and then at the subclass level, Meeting defines just one |
+        additional behaviour, it validates the presence of 'purpose' because each meeting must have a purpose. |
+      %p later on I'll be adding the documentation for all the other classes, but now let's move on to see how you use the JSON-API to add data about a meeting
 
-             
+
     %section
       %h3 Using the API.
       %p 
@@ -229,16 +238,17 @@
                 }
             }
           }
-     %p 
-       To create the government office you replace the 
-     %pre  
-       "type": "people" 
-     %p 
-       with
-     %pre
-       "type": "government-offices"
-     %p
-       We then create a meeting record
-     %pre
-       :preserve
-         
+      %p 
+        To create the government office you replace the 
+      %pre  
+        "type": "people" 
+      %p 
+        with
+      %pre
+        "type": "government-offices"
+      %p
+        We then create a meeting record
+      %pre
+        :preserve
+          To be continued
+
