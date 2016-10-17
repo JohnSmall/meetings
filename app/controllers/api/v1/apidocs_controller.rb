@@ -3,7 +3,8 @@ class Api::V1::ApidocsController < ApplicationController
 
   swagger_root do
     deploy = YAML.load(File.read('config/deploy.yml'))
-    host = deploy[Rails.env.to_sym][:domain]
+    section = deploy[Rails.env.to_sym]
+    host = section ? deploy[Rails.env.to_sym][:domain] : 'example.com'
     key :swagger, '2.0'
     info do
       key :version, '1.0.0'
