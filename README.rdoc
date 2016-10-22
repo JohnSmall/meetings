@@ -38,9 +38,11 @@ This will set up the tables in the development database
 
 Then run
   rake
-This will copy the data structure into the test database and run the tests. 
-
-If the tests pass then run
+This will copy the data structure into the test database and run the tests. This runs the Rspec specs, you'll see a few pending tests, ignore those. 
+Then it runs Cucumber smoke test to see that the basic web site it working. Running the Cucumber smoke test might fail if 
+a. You're running inside Vagrant 
+b. You don't have Firefox configured on your system
+If Rspec specs pass then ignore the Cucumber failures and run
   rails db:seed
 This will seed the development database with data extracted from some of the ministerial meetings csv files.
 

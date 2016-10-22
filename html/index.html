@@ -106,9 +106,9 @@ and follow the instructions</p>
 to get the right version and install it yourself.</p>
 
 <p>Once you&#39;ve done that cd into the rails root directory. If you&#39;re
-using RVM cding into the directory will create an RVM configuration.</p>
+using RVM cd-ing into the directory will create an RVM configuration.</p>
 
-<p>Then run these commands in sequence</p>
+<p>Then run these commands</p>
 
 <pre class="ruby"><span class="ruby-identifier">gem</span> <span class="ruby-identifier">install</span> <span class="ruby-identifier">bundler</span>
 </pre>
@@ -131,7 +131,7 @@ your Postgresl database. Assuming you&#39;ve set up a user with permission
 to create databases. Go to {Rails Root}/config, copy database.yml.example
 to database.yml and edit as required.</p>
 </li><li>
-<p>Also withing the /config directly copy secrets.yml.example to secrets.yml
+<p>Also within the /config directly copy secrets.yml.example to secrets.yml
 and add your own secrets. You can get new secrets by typing</p>
 </li></ol>
 
@@ -141,7 +141,7 @@ and add your own secrets. You can get new secrets by typing</p>
 <p>on the command line</p>
 
 <p>Once you&#39;ve got database.yml and secrets.yml in place and configured
-type</p>
+then run</p>
 
 <pre>rails db:create:all</pre>
 
@@ -161,15 +161,23 @@ these are the only ones you need to be concerned with.</p>
 <pre class="ruby"><span class="ruby-identifier">rake</span>
 </pre>
 
-<p>This will copy the data structure into the test database and run the tests.</p>
+<p>This will copy the data structure into the test database and run the tests.
+This runs the Rspec specs, you&#39;ll see a few pending tests, ignore
+those.  Then it runs Cucumber smoke test to see that the basic web site it
+working. Running the Cucumber smoke test might fail if</p>
+<ol style="list-style-type: lower-alpha"><li>
+<p>You&#39;re running inside Vagrant</p>
+</li><li>
+<p>You don&#39;t have Firefox configured on your system</p>
+</li></ol>
 
-<p>If the tests pass then run</p>
+<p>If Rspec specs pass then ignore the Cucumber failures and run</p>
 
 <pre class="ruby"><span class="ruby-identifier">rails</span> <span class="ruby-identifier">db</span>:<span class="ruby-identifier">seed</span>
 </pre>
 
-<p>This will see the development database with data extracted from some of the
-ministerial meetings csv files.</p>
+<p>This will seed the development database with data extracted from some of
+the ministerial meetings csv files.</p>
 
 <p>And finally type</p>
 
@@ -177,7 +185,8 @@ ministerial meetings csv files.</p>
 </pre>
 
 <p>This will start up Rails on port 3000 so go to <a
-href="http://localhost:3000">localhost:3000</a></p>
+href="http://localhost:3000">localhost:3000</a>, or <a
+href="http://{ip-address">{ip-address</a> of the vagrant box}:3000</p>
 </main>
 
 
