@@ -19,8 +19,8 @@ RSpec.describe "Api::V1::InfluenceGovernmentOfficePeople", type: :request do
           "type" =>  "influence-government-office-people",
           "relationships" =>{
             "meeting"=>{"data"=>{"type"=>"meetings","id"=>meeting.id}},
-            "government_office"=>{"data"=>{"type"=>"government-offices","id"=>government_office.id}},
-            "government_person"=>{"data"=>{"type"=>"government-people","id"=>government_person.id}}
+             "government_office"=>{"data"=>{"type"=>"government-offices","id"=>government_office.id}},
+             "government_person"=>{"data"=>{"type"=>"government-people","id"=>government_person.id}}
           }
         }
       }.to_json
