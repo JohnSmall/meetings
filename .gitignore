@@ -23,3 +23,5 @@
 /config/environment_params.yml
 /doc/
 tags
+/spec/examples.txt
+
