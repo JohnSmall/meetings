@@ -261,4 +261,62 @@
           }
       %p
         This will return a json-api record, with the id of the meeeting, we can now create the relationship between the meeting and the person,government office and organisation
-
+      %p
+        Using the meeting id, the person id, and the government_office id we got back from the previous calls we now create
+      %pre
+        :preserve
+          {
+           "data": {
+             "type": "influence-government-office-people",
+               "relationships": {
+                             "meeting": {
+                                 "data": {
+                                         "type": "meetings",
+                                         "id": 139
+                                         }
+                                        },
+                             "government-office": {
+                                           "data": {
+                                             "type": "government-offices",
+                                             "id": 250
+                                                 }
+                                                },
+                              "person": {
+                                         "data": {
+                                                  "type": "people",
+                                                  "id": 251
+                                                 }
+                                        }
+                               }
+                   }
+          }
+      %p Where the ids are replaced with the ids you get back from the calls to create the person, the government office and the meeting
+      %p Creating the organisation side of the meeting is similar
+      %pre
+        :preserve
+          {
+           "data": {
+             "type": "influence-organisation-people",
+               "relationships": {
+                             "meeting": {
+                                 "data": {
+                                         "type": "meetings",
+                                         "id": 139
+                                         }
+                                        },
+                             "organisation": {
+                                           "data": {
+                                             "type": "organisations",
+                                             "id": 250
+                                                 }
+                                                },
+                              "person": {
+                                         "data": {
+                                                  "type": "people",
+                                                  "id": 251
+                                                 }
+                                        }
+                               }
+                   }
+          }
+      %p And so on.
