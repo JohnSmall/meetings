@@ -199,6 +199,17 @@
         %li An InfluenceGovernmentOfficePerson record
         %li An InfluenceOrganisationPerson record
       %p
+        A person/government-office/organisation record might already exist, so the first thing to do is to check if you can find a record.
+        Using the standard JSON-API query parameter 'filter' we make a GET request filtering by name. For example
+      %pre
+        :preserve
+          http://localhost:3000/api/v1/people?filter[name]=Nicky Morgan MP
+      %p
+        Which works just fine in Postman, but you'll need to encode the spaces and brackets if you're doing it outside, e.g.
+      %pre
+        :preserve
+          curl -X GET -H "Cache-Control: no-cache" "http://localhost:3000/api/v1/people?filter%5Bname%5D=Nicky%20Morgan%20MP"
+      %p
         Following the JSON-API spec we have to set the headers to be 'Content-Type=application/vnd.api+json',then we POST to create a person record
       %pre
         :preserve
