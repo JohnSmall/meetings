@@ -3,11 +3,19 @@
     =link_to t(:home_page),root_path,class: 'navbar-brand',id: 'link-to-homepage'
   %ul.nav.navbar-nav
     %li.nav-item
-      =link_to 'People',people_path,class:'nav-link'
+      =link_to Person.model_name.human(count: 2).capitalize,people_path,class:'nav-link'
     %li.nav-item
-      =link_to 'Organisations',organisations_path,class:'nav-link'
+      =link_to GovernmentOffice.model_name.human(count: 2).capitalize,government_offices_path,class:'nav-link'
     %li.nav-item
-      =link_to 'Meetings',meetings_path,class:'nav-link'
+      =link_to Organisation.model_name.human(count: 2).capitalize,organisations_path,class:'nav-link'
+    %li.nav-item
+      =link_to Meeting.model_name.human(count: 2).capitalize,meetings_path,class:'nav-link'
+    %li.nav-item
+      =link_to Hospitality.model_name.human(count: 2).capitalize,hospitalities_path,class:'nav-link'
+    %li.nav-item
+      =link_to Gift.model_name.human(count: 2).capitalize,gifts_path,class:'nav-link'
+    %li.nav-item
+      =link_to Travel.model_name.human(count: 2).capitalize,travels_path,class:'nav-link'
   %ul.nav.nav-inline.pull-xs-right
     %li.nav.item.dropdown#flags
       =link_to '#',class: 'nav-link dropdown-toggle', 'data-toggle'=>'dropdown' do

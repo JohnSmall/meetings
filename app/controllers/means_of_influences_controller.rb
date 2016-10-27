@@ -1,4 +1,5 @@
 class MeansOfInfluencesController < ApplicationController
+  before_action :set_type
   before_action :set_means_of_influence, only: [:show, :edit, :update, :destroy]
 
   # GET /means_of_influences
@@ -62,6 +63,21 @@ class MeansOfInfluencesController < ApplicationController
   end
 
   private
+  def set_type
+    @type = type
+  end
+
+  def type
+    params[:type] || "MeansOfInfluence"
+  end
+
+  def type_class
+    type.constantize
+  end
+
+  def set_entity
+    @entity = type_class.find(params[:id])
+  end
     # Use callbacks to share common setup or constraints between actions.
     def set_means_of_influence
       @means_of_influence = MeansOfInfluence.find(params[:id])

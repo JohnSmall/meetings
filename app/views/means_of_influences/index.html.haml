@@ -1,9 +1,8 @@
-%h1 Listing means_of_influences
+%h1 means_of_influences
 
 %table
   %thead
     %tr
-      %th Type
       %th Day
       %th Month
       %th Year
@@ -11,8 +10,6 @@
       %th Type of hospitality
       %th Gift
       %th Value
-      %th
-      %th
       %th
 
   %tbody
@@ -27,9 +24,6 @@
         %td= means_of_influence.gift
         %td= means_of_influence.value
         %td= link_to 'Show', means_of_influence
-        %td= link_to 'Edit', edit_means_of_influence_path(means_of_influence)
-        %td= link_to 'Destroy', means_of_influence, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
 %br
 
 = link_to 'New Means of influence', new_means_of_influence_path
