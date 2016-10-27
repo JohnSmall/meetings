@@ -14,7 +14,7 @@ module GoogleTranslate
     conn = Faraday.new CONFIG['host']
     response = conn.post do | req |
       req.headers['X-HTTP-Method-Override']='GET'
-      req.body = {'key'=>CONFIG['key'],'source'=>'en','target'=>language.to_s,'q'=>source_text}
+      req.body = {'key'=>ENV['GOOGLE_PRIVATE_KEY'],'source'=>'en','target'=>language.to_s,'q'=>source_text}
     end
     result_text=JsonPath.on(response.body,'..translatedText').first|| "#{language} !!!!missing translation"
     decoded_text = ENTITY_DECODER.decode(result_text)
