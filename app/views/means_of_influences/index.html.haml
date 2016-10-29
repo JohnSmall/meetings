@@ -1,4 +1,4 @@
-%h1 means_of_influences
+%h1i= @type_class.model_name.human(count: 2).capitalize
 
 %table
   %thead
@@ -6,6 +6,7 @@
       %th Day
       %th Month
       %th Year
+      -case @type
       %th Purpose
       %th Type of hospitality
       %th Gift
@@ -15,7 +16,6 @@
   %tbody
     - @means_of_influences.each do |means_of_influence|
       %tr
-        %td= means_of_influence.type
         %td= means_of_influence.day
         %td= means_of_influence.month
         %td= means_of_influence.year
