@@ -3,11 +3,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :extract_locale_key
 
-  rescue_from CanCan::AccessDenied do |exception|
-    flash[:alert] = current_user ? t('not_authorised') : t('not_authenticated')
-    redirect_to :root
-  end
-
   protected
   def set_locale
       I18n.locale = extract_locale_key
