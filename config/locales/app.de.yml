@@ -1,6 +1,10 @@
 ---
 de:
-  hello: Hallo Welt
+  date:
+    formats:
+      short: "%B %Y"
+      default: "%D %m, %Y"
+  hello: Hallm Welt
   show: Show
   edit: Bearbeiten
   back: Zurück
@@ -8,7 +12,6 @@ de:
   delete: Löschen
   save: Speichern
   home_page: Zuhause
-  application_name: ministerial_meetings
   toggle_navigation: Toggle-Navigation
   not_authorised: Zugriff verweigert. Du bist nicht berechtigt, dies zu tun
   not_authenticated: Zugriff verweigert. Sie müssen sich zuerst einloggen
@@ -95,3 +98,5 @@ de:
       organisation:
         name: Name
         wikipedia_entry: Wikipedia-Eintrag
+  application_name: Minister unter dem Einfluss
+  documentation: Dokumentation

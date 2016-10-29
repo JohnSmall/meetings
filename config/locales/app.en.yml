@@ -14,6 +14,7 @@ en:
   not_authenticated: "Access denied. You must log in first"
   login_or_sign_up: "Please log in or sign up"
   site_access_rules: "To access this site you must be an authenticated user and only some users are allowed to sign up"
+  documentation: Documentation
   activerecord:
     models:
       meeting:

@@ -8,7 +8,6 @@ it:
   delete: Cancellare
   save: Salva
   home_page: Casa
-  application_name: ministerial_meetings
   toggle_navigation: Navigazione Toggle
   not_authorised: Accesso negato. Non sei autorizzato a fare questo
   not_authenticated: Accesso negato. È necessario il login prima
@@ -95,3 +94,5 @@ it:
       organisation:
         name: Nome
         wikipedia_entry: Wikipedia Entry
+  application_name: I Ministri Under The Influence
+  documentation: Documentazione

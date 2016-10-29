@@ -62,6 +62,7 @@ gem "htmlentities"
 gem 'factory_girl_rails'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'activemodel-serializers-xml'
+gem "cancancan"
 gem 'swagger-blocks'
 gem 'jsonapi-resources'
 gem 'globalize', git: 'git@github.com:JohnSmall/globalize.git'

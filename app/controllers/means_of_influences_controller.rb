@@ -75,16 +75,13 @@ class MeansOfInfluencesController < ApplicationController
     @type_class = type.constantize
   end
 
-  def set_entity
-    @entity = type_class.find(params[:id])
+  # Use callbacks to share common setup or constraints between actions.
+  def set_means_of_influence
+    @means_of_influence = type_class.find(params[:id]).decorate
   end
-    # Use callbacks to share common setup or constraints between actions.
-    def set_means_of_influence
-      @means_of_influence = type_class.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def means_of_influence_params
-      params.require(:means_of_influence).permit(:type, :day, :month, :year, :purpose, :type_of_hospitality, :gift, :value)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def means_of_influence_params
+    params.require(:means_of_influence).permit(:type, :day, :month, :year, :purpose, :type_of_hospitality, :gift, :value)
+  end
 end

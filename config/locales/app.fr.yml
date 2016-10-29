@@ -8,7 +8,6 @@ fr:
   delete: Effacer
   save: Enregistrer
   home_page: Maison
-  application_name: ministerial_meetings
   toggle_navigation: Basculer la navigation
   not_authorised: Accès refusé. Vous n&#39;êtes pas autorisé à le faire
   not_authenticated: Accès refusé. Vous devez d&#39;abord vous connecter
@@ -95,3 +94,5 @@ fr:
       organisation:
         name: prénom
         wikipedia_entry: Wikipedia Entrée
+  application_name: Ministres sous influence
+  documentation: Documentation
