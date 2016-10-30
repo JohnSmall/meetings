@@ -13,6 +13,7 @@ body {
 }
 caption {
   caption-side: top;
+  color: white;
 }
 .table {
   opacity: 0.95;
@@ -26,6 +27,7 @@ article{
   background-color: black;
   opacity: 0.98;
 }
-pre{color:white;
-  background-color: darkgrey;}
-
+pre, .card{color:white;
+  background-color: darkgrey;
+  border: 1px solid darkred;}
+.card{opacity: 0.95}

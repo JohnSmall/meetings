@@ -1,15 +1,21 @@
-%h1= @type_class.model_name.human(count: 2).capitalize
+-content_for :title do
+  = @type.pluralize
 
-%table.table.table-inverse.table-striped
-  %thead
-    %tr
-      %th Name
-      %th Wikipedia entry
-      %th
+-content_for :content do
+  .card
+    .card-block
+      %h1.card-title= @type_class.model_name.human(count: 2).capitalize
+    .card-block
+      %table.table.table-inverse.table-striped
+        %thead
+          %tr
+            %th Name
+            %th Wikipedia entry
+            %th
 
-  %tbody
-    - @entities.each do |entity|
-      %tr
-        %td= entity.name
-        %td= entity.wikipedia_entry
-        %td= link_to 'Show', entity
+        %tbody
+          - @entities.each do |entity|
+            %tr
+              %td= entity.name
+              %td= entity.wikipedia_entry
+              %td= link_to 'Show', send("#{@type.underscore.downcase}_path",entity)

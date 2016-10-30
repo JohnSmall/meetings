@@ -5,6 +5,6 @@ config/environment_params.yml
 rsync_exclusions.txt
 sync_to_shared_code.sh
 *.swp
-tmp/*.*
+tmp/
 
 
