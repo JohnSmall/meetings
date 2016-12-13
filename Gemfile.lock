@@ -16,15 +16,6 @@ GIT
     capistrano-git-submodule-strategy (0.1.22)
       capistrano (~> 3.1)
 
-GIT
-  remote: git@github.com:JohnSmall/globalize.git
-  revision: 7d507472e4076c720d798736137eb28d169eb1a1
-  specs:
-    globalize (5.1.0)
-      activemodel (>= 4.2, < 5.1)
-      activerecord (>= 4.2, < 5.1)
-      request_store (~> 1.0)
-
 GEM
   remote: https://rubygems.org/
   remote: https://rails-assets.org/
@@ -427,7 +418,6 @@ DEPENDENCIES
   factory_girl_rails
   faraday
   git
-  globalize!
   haml-rails
   htmlentities
   jbuilder (~> 2.5)

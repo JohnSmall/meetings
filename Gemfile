@@ -64,7 +64,6 @@ gem 'active_model_serializers', '~> 0.10.0'
 gem 'activemodel-serializers-xml'
 gem 'swagger-blocks'
 gem 'jsonapi-resources'
-gem 'globalize', git: 'git@github.com:JohnSmall/globalize.git'
 group :development, :test do
   gem 'mailcatcher'
   gem 'syntax'
