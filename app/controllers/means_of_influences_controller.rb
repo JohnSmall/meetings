@@ -82,6 +82,6 @@ class MeansOfInfluencesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def means_of_influence_params
-    params.require(:means_of_influence).permit(:type, :day, :month, :year, :purpose, :type_of_hospitality, :gift, :value)
+    params.require(:means_of_influence).permit(:type, :day, :month, :year, :purpose, :type_of_hospitality, :gift, :value,:source_file_id,:source_file_line_number)
   end
 end

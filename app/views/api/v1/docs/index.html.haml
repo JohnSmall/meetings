@@ -37,6 +37,7 @@
           %h2 The data model
           %p The underlying data model is very simple we have
           %ol
+            %li Source files
             %li People
             %li Organisations
             %li Government departments (offices of state)
@@ -45,14 +46,25 @@
             %li Gifts
             %li Travel
           %p
-            All those things can be represented in a three table model using single table inheritance, you can read up on the concept here 
+            All those things can be represented in a four table model using single table inheritance, you can read up on the concept here 
             =link_to('Wikipedia on Single Table Inheritance','https://en.wikipedia.org/wiki/Single_Table_Inheritance')
             and
             =link_to('Martin Fowler on Single Table Inheritance','http://www.martinfowler.com/eaaCatalog/singleTableInheritance.html')
             and
             =link_to('Single Table Inheritance in Rails','http://api.rubyonrails.org/classes/ActiveRecord/Inheritance.html')
           %p
-            The basic three tables are just these;-
+            The basic fours tables are just these;-
+          %h5 The source files table. This holds information about the sources of information we've collected from the Government website
+          %pre
+            :preserve
+              CREATE TABLE source_files (
+                  id integer NOT NULL,
+                  location character varying,
+                  uri character varying,
+                  created_at timestamp without time zone NOT NULL,
+                  updated_at timestamp without time zone NOT NULL
+              );
+
           %h5 The entities table. This holds people, government offices, and organisations
           %pre
             :preserve
@@ -80,6 +92,8 @@
                   type_of_hospitality character varying,
                   gift character varying,
                   value integer,
+                  source_file_id integer,
+                  source_file_line_number integer
                   created_at timestamp without time zone NOT NULL,
                   updated_at timestamp without time zone NOT NULL
               );
@@ -163,6 +177,7 @@
                 %w(Meeting Hospitality Gift Travel)
               end
               validates :month,:year,presence: true
+              belongs_to :source_file
               has_many :influence_government_office_people
               has_many :influence_organisation_people
               has_many :organisations,through: :influence_organisation_people
@@ -190,15 +205,104 @@
           I'll walk through an example using the API to create the entries required for a meeting between one government person and one organisation. We need to create
           these records and then link them together
         %ol
+          %li A source file record
+          %li A meeting record
           %li A person record
           %li A government office record
           %li An organisation record
-          %li A meeting record
         %p
           We then link them by creating 
         %ol
           %li An InfluenceGovernmentOfficePerson record
           %li An InfluenceOrganisationPerson record
+        %p
+          First of all we have to create an entry for the source file we're extracting the information from. We'll enter the current location of the source file
+          and the original location where we got it from. The current location is where we're storing it, which might be an S3 bucket, a file on disk, or something else
+          it should provide enough information for the parser to get the file to be parsed.
+        %p
+          Following the JSON-API spec we have to set the headers to be 'Content-Type=application/vnd.api+json',then we POST to create a source file record
+        %pre
+          :preserve
+            POST /api/v1/source-files HTTP/1.1
+            Host: localhost:3000
+            Content-Type: application/vnd.api+json
+            Cache-Control: no-cache
+            { "data": 
+              { "type": "source-files", 
+                "attributes": { 
+                  "location": "a_directory_where_we_keep_the_source_files/and_the_source_file_name.csv", 
+                  "uri": "https://wherever-we-got-it-from" 
+                  } 
+                } 
+              }
+        %p This will return json like this
+        %pre
+          :preserve
+            {
+              "data":{
+              "id":"175",
+              "type":"source-files",
+              "links":{
+                "self":"http://localhost:3000/api/v1/source-files/175"
+                },
+                "attributes":{
+                  "location": "a_directory_where_we_keep_the_source_files/and_the_source_file_name.csv", 
+                  "uri": "https://wherever-we-got-it-from" 
+                  },
+                  "relationships":{
+                    "means-of-influences":{
+                      "links":{
+                        "self":"http://localhost:3000/api/v1/source-files/175/relationships/means-of-influences",
+                        "related":"http://localhost:3000/api/v1/source-files/175/means-of-influences"
+                      }
+                    }
+                    ,
+                      "meetings": {
+                        "links": {
+                          "self": "http://localhost:3000/api/v1/source-files/1/relationships/meetings",
+                          "related": "http://localhost:3000/api/v1/source-files/1/meetings"
+                      }
+                    },
+                    "hospitalities": {
+                                    "links": {
+                                      "self": "http://localhost:3000/api/v1/source-files/1/relationships/hospitalities",
+                                      "related": "http://localhost:3000/api/v1/source-files/1/hospitalities"
+                                      }
+                    },
+                    "travels": {
+                                "links": {
+                                  "self": "http://localhost:3000/api/v1/source-files/1/relationships/travels",
+                                  "related": "http://localhost:3000/api/v1/source-files/1/travels"
+                                  }
+                                },
+                    "gifts": {
+                               "links": {
+                                         "self": "http://localhost:3000/api/v1/source-files/1/relationships/gifts",
+                                         "related": "http://localhost:3000/api/v1/source-files/1/gifts"
+                                        }
+                             }
+                  }
+              }
+            }
+
+        %p 
+          We then create a meeting record
+        %pre
+          :preserve
+            {
+              "data" :  {
+                "type" :  "meetings",
+                "attributes" :  {
+                  "purpose" :  "A test meeting",
+                  "year" : '2016',
+                  "month" : '3'
+                  "source-file-id": 'source_file_id_that_we_got_from_the_previous_call',
+                  "source-file-line-number": '1'
+                }
+              }
+            }
+        %p
+          This will return a json-api record, with the id of the meeeting, we can now create the relationship between the meeting and the person,government office and organisation
         %p
           A person/government-office/organisation record might already exist, so the first thing to do is to check if you can find a record.
           Using the standard JSON-API query parameter 'filter' we make a GET request filtering by name. For example
@@ -258,21 +362,6 @@
         %pre
           "type": "government-offices"
         %p
-          We then create a meeting record
-        %pre
-          :preserve
-            {
-              "data" :  {
-                "type" :  "meetings",
-                "attributes" :  {
-                  "purpose" :  "A test meeting",
-                  "year" : '2016',
-                  "month" : '3'
-                }
-              }
-            }
-        %p
-          This will return a json-api record, with the id of the meeeting, we can now create the relationship between the meeting and the person,government office and organisation
         %p
           Using the meeting id, the person id, and the government_office id we got back from the previous calls we now create
         %pre
