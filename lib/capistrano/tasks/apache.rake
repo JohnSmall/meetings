@@ -16,7 +16,7 @@ namespace :apache do
   ServerName #{domain}
   ServerAlias *.#{domain}
   DocumentRoot #{File.join(deploy_to, 'current', 'public')}
-  PassengerRuby /home/ubuntu/.rvm/gems/#{File.read('.ruby-version').split[0]}@#{File.read('.ruby-gemset').split[0]}/wrappers/ruby
+  PassengerRuby /home/rails/.rvm/gems/#{File.read('.ruby-version').split[0]}@#{File.read('.ruby-gemset').split[0]}/wrappers/ruby
   RailsEnv #{fetch(:stage)}
   <Directory #{File.join(deploy_to, 'current', 'public')}>
     Allow from all
@@ -30,7 +30,7 @@ CONFIG
 
     on roles(:web), in: :groups, limit: 3, wait: 10 do
       upload! io,config_file
-      within '/home/ubuntu' do
+      within '/home/rails' do
         execute "sudo mv #{config_file} /etc/apache2/sites-available/"
       end   
       execute "sudo a2ensite #{config_file}"
